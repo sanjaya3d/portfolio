@@ -6,14 +6,43 @@
   <title>SANJAYA 3D — 3D Artist and Animator</title>
   <meta name="description" content="SANJAYA 3D is a Sri Lankan 3D artist and animator offering 3D product animation, product visualisation, 3D modelling and cinematic animation.">
   <meta name="theme-color" content="#09090b">
+  <meta name="color-scheme" content="dark">
 
+  <!-- SEO + social sharing.
+       SITE ADDRESS: every https://sanjaya3d.github.io/ address below (canonical, og:url, og:image, twitter:image, JSON-LD url) assumes your GitHub repo is named
+       sanjaya3d.github.io. If you use another repo name or your own domain, change them (see README). -->
+  <link rel="canonical" href="https://sanjaya3d.github.io/">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SANJAYA 3D">
+  <meta property="og:locale" content="en">
+  <meta property="og:url" content="https://sanjaya3d.github.io/">
   <meta property="og:title" content="SANJAYA 3D — 3D Artist and Animator">
-  <meta property="og:description" content="3D product animation, product visualisation, 3D modelling and cinematic animation.">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:description" content="3D product animation, product visualisation, 3D modelling and cinematic animation, plus Blender add-ons.">
+  <meta property="og:image" content="https://sanjaya3d.github.io/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SANJAYA 3D, Sri Lankan 3D artist and animator, with an orange cube logo on a dark background">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SANJAYA 3D — 3D Artist and Animator">
+  <meta name="twitter:description" content="3D product animation, product visualisation, 3D modelling and cinematic animation, plus Blender add-ons.">
+  <meta name="twitter:image" content="https://sanjaya3d.github.io/assets/og.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "SANJAYA 3D",
+    "url": "https://sanjaya3d.github.io/",
+    "jobTitle": "3D Artist and Animator",
+    "nationality": "Sri Lankan",
+    "description": "Sri Lankan 3D artist and animator offering 3D product animation, product visualisation, 3D modelling and cinematic animation.",
+    "knowsAbout": ["3D product animation", "3D product visualisation", "3D modelling", "Cinematic animation", "Blender", "Blender add-ons"],
+    "sameAs": ["https://www.fiverr.com/sanjayabandula", "https://github.com/sanjaya3d"]
+  }
+  </script>
 
   <script>document.documentElement.classList.add("js");</script><!-- lets CSS hide .reveal items only when JS can reveal them -->
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -35,15 +64,23 @@
         <span class="logo__text">SANJAYA<span class="logo__3d"> 3D</span></span>
       </a>
 
-      <!-- PART 7: section links (Work, Services, Add-ons, Reviews, Contact) go here -->
+      <nav class="nav__links" id="nav-links" aria-label="Primary">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#addons">Add-ons</a>
+        <a href="#contact">Contact</a>
+        <a class="nav__links-extra" href="https://github.com/sanjaya3d" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
 
-      <nav class="nav__actions" aria-label="Primary">
-        <a class="nav__link" href="https://github.com/sanjaya3d" target="_blank" rel="noopener">GitHub</a>
+      <div class="nav__actions">
+        <a class="nav__github" href="https://github.com/sanjaya3d" target="_blank" rel="noopener">GitHub</a>
         <a class="btn btn--primary btn--sm" href="https://www.fiverr.com/sanjayabandula" target="_blank" rel="noopener">
           <span>Hire me<span class="nav-cta__extra"> on Fiverr</span></span>
           <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg>
         </a>
-      </nav>
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu"><span aria-hidden="true"></span></button>
+      </div>
     </div>
   </header>
 
@@ -59,7 +96,7 @@
         <p class="eyebrow rise" style="--i:0">Sri Lankan 3D artist and animator</p>
 
         <h1 class="wordmark rise" id="hero-title" style="--i:1">
-          <span>Sanjaya</span><span class="outline">3D</span>
+          <span>Sanjaya</span> <span class="outline">3D</span>
         </h1>
 
         <div class="hero__foot">
@@ -104,6 +141,22 @@
               <li>DaVinci Resolve</li>
             </ul>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WORK (filled by js/work.js from js/videos.js) ============ -->
+    <section class="section work" id="work" aria-labelledby="work-title">
+      <div class="section__inner">
+        <header class="work__head">
+          <div>
+            <p class="eyebrow reveal">Selected work</p>
+            <h2 class="section__title reveal" id="work-title" style="--i:1">Product animations, in motion.</h2>
+          </div>
+          <p class="work__count reveal" style="--i:2" id="work-count"></p>
+        </header>
+        <div class="work__grid" id="work-grid">
+          <noscript><p class="work__noscript">Turn on JavaScript to watch the product animations.</p></noscript>
         </div>
       </div>
     </section>
@@ -192,15 +245,226 @@
       </div>
     </section>
 
-    <!-- PART 4: Product animation showcase (10 pieces) -->
-    <!-- PART 5: Fiverr reviews, 3-layer sliding loop -->
-    <!-- PART 6: Blender add-ons (MatBaker, LIPI, Drive-rig) -->
-    <!-- PART 7: Contact + footer -->
+    <!-- ============ REVIEWS (filled by js/reviews.js from js/reviews-data.js) ============ -->
+    <section class="section reviews" id="reviews" aria-labelledby="reviews-title">
+      <div class="section__inner reviews__head">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow reveal">Reviews</p>
+            <h2 class="section__title reveal" id="reviews-title" style="--i:1">What clients say on Fiverr.</h2>
+          </div>
+          <div class="reviews__tools reveal" style="--i:2">
+            <span class="reviews__demo" id="reviews-demo" hidden>Sample reviews</span>
+            <p class="reviews__summary" id="reviews-summary" hidden></p>
+            <button type="button" class="reviews__pause" id="reviews-pause" aria-pressed="false" hidden>
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path class="i-pause" d="M4.5 3h2.5v10H4.5zM9 3h2.5v10H9z"/><path class="i-play" d="M5 3l8 5-8 5z"/></svg>
+              <span class="reviews__pause-label">Pause</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews__rows" id="reviews-rows"><noscript><p class="reviews__noscript">The reviews load with JavaScript turned on. You can read them all on Fiverr.</p></noscript></div>
+
+      <div class="section__inner reviews__foot">
+        <a class="btn btn--ghost" href="https://www.fiverr.com/sanjayabandula" target="_blank" rel="noopener">
+          Read all reviews on Fiverr
+          <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ BLENDER ADD-ONS (plain HTML: edit the text, numbers and links right here) ============ -->
+    <section class="section addons" id="addons" aria-labelledby="addons-title">
+      <div class="section__inner">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow reveal">Blender add-ons</p>
+            <h2 class="section__title reveal" id="addons-title" style="--i:1">Tools I build for Blender artists.</h2>
+          </div>
+        </div>
+
+        <!-- Featured: Mat-Baker -->
+        <article class="addon addon--featured reveal">
+          <div class="addon__main">
+            <p class="addon__kicker">Featured add-on</p>
+            <h3 class="addon__name">Mat-Baker</h3>
+            <p class="addon__lead">Bake procedural materials into PBR texture packs in one click. Pick an engine preset and a resolution, then export. Presets for Unreal, Unity, glTF and Godot.</p>
+            <ul class="addon__points">
+              <li>Base Color, Normal, Roughness, Metallic, Height, AO, Emission, Opacity and Curvature maps</li>
+              <li>ORM and Mask-map channel packing</li>
+              <li>Models with many materials baked into one texture set</li>
+              <li>Bakes a copy, so your original material is never touched</li>
+            </ul>
+            <div class="addon__cta">
+              <a class="btn btn--primary" href="https://extensions.blender.org/add-ons/mat-baker/" target="_blank" rel="noopener">
+                Get it on Blender Extensions
+                <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg>
+              </a>
+              <a class="btn btn--ghost" href="https://github.com/sanjaya3d/Mat-Baker" target="_blank" rel="noopener">View on GitHub</a>
+            </div>
+            <p class="addon__featured">
+              <span class="addon__featured-label">Featured on</span>
+              <span class="addon__outlets">
+                <span class="outlet">CGBox News</span>
+                <span class="outlet">BlenderNation</span>
+                <a class="outlet outlet--link" href="https://x.com/ModelingTechNT" target="_blank" rel="noopener">ModelingTechNote</a>
+                <span class="outlet">AddonRadar</span>
+              </span>
+            </p>
+          </div>
+
+          <div class="addon__side">
+            <dl class="addon__stats">
+              <div class="addon__stat">
+                <dt>Downloads</dt>
+                <!-- EDIT: update the number in both places (data-count and the text) -->
+                <dd><span data-count="2391" data-group>2,391</span></dd>
+              </div>
+              <div class="addon__stat">
+                <dt>License</dt>
+                <dd class="addon__stat-text">Free and open source</dd>
+              </div>
+              <div class="addon__stat">
+                <dt>Works with</dt>
+                <dd class="addon__stat-text">Blender 4.2+</dd>
+              </div>
+            </dl>
+
+            <!-- Illustration: one procedural material in, a texture pack out -->
+            <div class="packviz" aria-hidden="true">
+              <div class="packviz__src"><span class="packviz__ball"></span><span class="packviz__label">Procedural material</span></div>
+              <span class="packviz__arrow">One click</span>
+              <div class="packviz__grid">
+                <span class="map map--base"><i>Base Color</i></span>
+                <span class="map map--normal"><i>Normal</i></span>
+                <span class="map map--rough"><i>Roughness</i></span>
+                <span class="map map--metal"><i>Metallic</i></span>
+                <span class="map map--height"><i>Height</i></span>
+                <span class="map map--ao"><i>AO</i></span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <div class="addons__more">
+          <article class="addon addon--small reveal" style="--i:1">
+            <div class="addon__row"><h3 class="addon__name addon__name--sm">LIPI</h3><span class="addon__tag">On GitHub</span></div>
+            <!-- EDIT: replace this line with a one-line description of what LIPI does -->
+            <p class="addon__text">Project page and source code on GitHub.</p>
+            <a class="addon__link" href="https://github.com/sanjaya3d/LIPI" target="_blank" rel="noopener">View on GitHub <span aria-hidden="true">↗</span></a>
+          </article>
+
+          <article class="addon addon--small addon--soon reveal" style="--i:2">
+            <div class="addon__row"><h3 class="addon__name addon__name--sm">Drive-rig</h3><span class="addon__tag addon__tag--soon">Coming soon</span></div>
+            <!-- EDIT: add a one-line description when you are ready to announce it -->
+            <p class="addon__text">A new add-on is on the way.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT (plain HTML: edit the text and links right here) ============ -->
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="section__inner contact__inner">
+        <svg class="contact__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <polygon points="16,3 28,10 16,17 4,10" fill="#ff6b2c"/>
+          <polygon points="4,10 16,17 16,30 4,23" fill="#ff6b2c" opacity=".5"/>
+          <polygon points="28,10 16,17 16,30 28,23" fill="#ff6b2c" opacity=".78"/>
+        </svg>
+        <p class="eyebrow reveal">Contact</p>
+        <h2 class="contact__title reveal" id="contact-title" style="--i:1">Let&rsquo;s make your product <em>move.</em></h2>
+        <p class="section__lede reveal" style="--i:2">
+          Tell me about your product and what you want to show. Message me on Fiverr to talk it through and start a project, or have a look at my add-ons and source code on GitHub.
+        </p>
+        <div class="contact__cta reveal" style="--i:3">
+          <a class="btn btn--primary" href="https://www.fiverr.com/sanjayabandula" target="_blank" rel="noopener">
+            Start a project on Fiverr
+            <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="https://github.com/sanjaya3d" target="_blank" rel="noopener">See my GitHub</a>
+        </div>
+        <!-- EMAIL: no email address was given, so none is shown. To add one, remove the comment marks:
+        <p class="contact__mail reveal" style="--i:4">Or write to <a href="mailto:you@example.com">you@example.com</a></p>
+        -->
+        <ul class="contact__tags reveal" style="--i:4" aria-label="What I can help with">
+          <li>3D Product Animation</li>
+          <li>3D Product Visualisation</li>
+          <li>3D Modelling</li>
+          <li>Cinematic Animation</li>
+        </ul>
+      </div>
+    </section>
   </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a class="logo" href="#top" aria-label="SANJAYA 3D, back to top">
+            <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true">
+              <polygon class="c-top" points="16,3 28,10 16,17 4,10"/>
+              <polygon class="c-left" points="4,10 16,17 16,30 4,23"/>
+              <polygon class="c-right" points="28,10 16,17 16,30 28,23"/>
+            </svg>
+            <span class="logo__text">SANJAYA<span class="logo__3d"> 3D</span></span>
+          </a>
+          <p>Sri Lankan 3D artist and animator.</p>
+        </div>
+        <nav class="footer__nav" aria-label="Footer">
+          <ul>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#addons">Add-ons</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <ul>
+            <li><a href="https://www.fiverr.com/sanjayabandula" target="_blank" rel="noopener">Fiverr <span aria-hidden="true">↗</span></a></li>
+            <li><a href="https://github.com/sanjaya3d" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer__base">
+        <p>&copy; <span id="year">2026</span> SANJAYA 3D. All rights reserved.</p>
+        <a class="footer__top-link" href="#top">Back to top <span aria-hidden="true">↑</span></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Video lightbox (opened by js/work.js) -->
+  <dialog class="lightbox" id="lightbox" aria-labelledby="lightbox-title">
+    <div class="lightbox__inner">
+      <div class="lightbox__bar">
+        <span class="lightbox__count"></span>
+        <h3 class="lightbox__title" id="lightbox-title"></h3>
+        <button type="button" class="lightbox__icon lightbox__close" aria-label="Close video">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="lightbox__stage"><div class="lightbox__frame"></div></div>
+      <div class="lightbox__foot">
+        <button type="button" class="lightbox__icon lightbox__prev" aria-label="Previous video">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <a class="lightbox__watch" href="#" target="_blank" rel="noopener">Watch on YouTube</a>
+        <button type="button" class="lightbox__icon lightbox__next" aria-label="Next video">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </dialog>
 
   <script src="js/main.js"></script>
   <!-- Part 2: Three.js (pinned) + the 3D hero. If the CDN is unreachable the hero simply stays static. -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js" defer crossorigin="anonymous"></script>
   <script src="js/hero3d.js" defer></script>
+  <!-- Part 4: edit js/videos.js to add your YouTube links -->
+  <script src="js/videos.js" defer></script>
+  <script src="js/work.js" defer></script>
+  <!-- Part 5: edit js/reviews-data.js to add your real Fiverr reviews -->
+  <script src="js/reviews-data.js" defer></script>
+  <script src="js/reviews.js" defer></script>
 </body>
 </html>

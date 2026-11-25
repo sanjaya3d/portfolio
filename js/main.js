@@ -1,5 +1,5 @@
 /* SANJAYA 3D — portfolio
-   Part 1: nav state, hero pointer light, stat counters, tools ticker.
+   Nav (links, active section, mobile menu), hero pointer light, stat counters, tools ticker.
    Plain JS, no build step, runs as-is on GitHub Pages. */
 (() => {
   "use strict";
@@ -7,11 +7,65 @@
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $ = (sel, root = document) => root.querySelector(sel);
 
-  /* ---------- Nav: add a backdrop once the page scrolls ---------- */
+  /* ---------- Nav: backdrop on scroll, current-section highlight, mobile menu ---------- */
   const nav = $("#nav");
-  const syncNav = () => nav.classList.toggle("is-scrolled", window.scrollY > 24);
+  const navLinks = $("#nav-links");
+  const toggle = $(".nav__toggle");
+
+  const sections = ["work", "services", "reviews", "addons", "contact"]
+    .map((id) => ({ id, el: document.getElementById(id), link: $(`.nav__links a[href="#${id}"]`) }))
+    .filter((s) => s.el && s.link);
+
+  // The current section is the last one whose top has passed ~35% down the screen.
+  // At the very bottom of the page the last section wins (it may be too short to reach that line).
+  const markActive = () => {
+    let current = null;
+    const line = window.innerHeight * 0.35;
+    sections.forEach((s) => { if (s.el.getBoundingClientRect().top <= line) current = s.id; });
+    if (sections.length && window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+      current = sections[sections.length - 1].id;
+    }
+    sections.forEach((s) => {
+      const on = s.id === current;
+      s.link.classList.toggle("is-active", on);
+      if (on) s.link.setAttribute("aria-current", "location");
+      else s.link.removeAttribute("aria-current");
+    });
+  };
+
+  let navTicking = false;
+  const syncNav = () => {
+    nav.classList.toggle("is-scrolled", window.scrollY > 24);
+    if (navTicking) return;
+    navTicking = true;
+    requestAnimationFrame(() => { navTicking = false; markActive(); });
+  };
   syncNav();
   window.addEventListener("scroll", syncNav, { passive: true });
+  window.addEventListener("resize", syncNav);
+
+  if (toggle && navLinks) {
+    const isOpen = () => nav.classList.contains("is-open");
+    const setOpen = (open) => {
+      nav.classList.toggle("is-open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    };
+    toggle.addEventListener("click", () => setOpen(!isOpen()));
+    nav.addEventListener("click", (e) => { if (e.target.closest("a")) setOpen(false); });
+    document.addEventListener("click", (e) => { if (isOpen() && !nav.contains(e.target)) setOpen(false); });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && isOpen()) { setOpen(false); toggle.focus(); }
+    });
+    nav.addEventListener("focusout", (e) => {
+      if (isOpen() && e.relatedTarget && !nav.contains(e.relatedTarget)) setOpen(false);
+    });
+    window.matchMedia("(max-width: 960px)").addEventListener("change", () => setOpen(false));
+  }
+
+  /* ---------- Footer year ---------- */
+  const year = $("#year");
+  if (year) year.textContent = String(new Date().getFullYear());
 
   /* ---------- Hero: cursor drives the key-light and floor parallax ---------- */
   const hero = $(".hero");
@@ -45,9 +99,11 @@
       const end = Number(el.dataset.count);
       const duration = 1400;
       const start = performance.now();
+      const group = el.hasAttribute("data-group"); // data-group: show 2,391 instead of 2391
+      const show = (v) => (group ? v.toLocaleString("en-US") : String(v));
       const tick = (now) => {
         const p = Math.min((now - start) / duration, 1);
-        el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
+        el.textContent = show(Math.round(end * (1 - Math.pow(1 - p, 3))));
         if (p < 1) requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);
@@ -71,22 +127,25 @@
   }
 
   /* ---------- Scroll reveal for .reveal elements ---------- */
-  const reveals = document.querySelectorAll(".reveal");
-  if (reduceMotion || !("IntersectionObserver" in window)) {
-    reveals.forEach((el) => el.classList.add("is-in"));
-  } else {
-    const revealObserver = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-in");
-          observer.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -6% 0px" }
-    );
-    reveals.forEach((el) => revealObserver.observe(el));
-  }
+  const revealObserver =
+    reduceMotion || !("IntersectionObserver" in window)
+      ? null
+      : new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-in");
+              observer.unobserve(entry.target);
+            });
+          },
+          { threshold: 0.15, rootMargin: "0px 0px -6% 0px" }
+        );
+
+  // Shared with later scripts (e.g. the video grid is built after this file runs)
+  window.revealOnScroll = (list) => {
+    list.forEach((el) => (revealObserver ? revealObserver.observe(el) : el.classList.add("is-in")));
+  };
+  window.revealOnScroll(document.querySelectorAll(".reveal"));
 
   /* ---------- Tools ticker: clone the list so the loop has no gap ---------- */
   const track = $(".ticker__track");
