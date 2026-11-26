@@ -11,18 +11,10 @@
        title: "Name shown on the tile"
        thumb: "assets/thumbs/01.jpg"   (your own cover image; otherwise YouTube's thumbnail is used)
 
-   The FIRST entry is shown large as the featured piece.
-   Entries with an empty url show a "Coming soon" tile, so you can fill them in over time.
+   The FIRST entry is shown large as the featured piece. With one video, the section is just that one big player.
+   Entries with an empty url show a "Coming soon" tile, so you can reserve a spot and fill it in later.
    --------------------------------------------------------------- */
 window.PORTFOLIO_VIDEOS = [
-  { title: "Product animation 01", url: "" },
-  { title: "Product animation 02", url: "" },
-  { title: "Product animation 03", url: "" },
-  { title: "Product animation 04", url: "" },
-  { title: "Product animation 05", url: "" },
-  { title: "Product animation 06", url: "" },
-  { title: "Product animation 07", url: "" },
-  { title: "Product animation 08", url: "" },
-  { title: "Product animation 09", url: "" },
-  { title: "Product animation 10", url: "" },
+  { title: "Product animation", url: "https://youtu.be/HyiGxdHSs0w" },
+  // To add more, copy the line above onto a new line, give it a title and paste the next YouTube link.
 ];

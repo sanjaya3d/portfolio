@@ -15,13 +15,12 @@ Static site, no build step. Plain HTML, CSS and JavaScript, so it runs on GitHub
 
 ## Before you go live (checklist)
 
-- [ ] `js/videos.js`: paste your 10 YouTube links (empty entries show a "Coming soon" tile)
+- [ ] `js/videos.js`: add more animations when you have them (one is in already)
 - [ ] `js/reviews-data.js`: replace the sample reviews with real ones and remove every `demo: true`
       (the "Sample reviews" tag then disappears by itself)
-- [ ] `index.html`, LIPI card: replace the placeholder line with a real one-line description
 - [ ] `index.html`, Mat-Baker card: update the download number now and then (two places, see the `EDIT:` note)
 - [ ] Site address: if your repo is not `sanjaya3d.github.io`, change the address in the `<head>` (see below)
-- [ ] Optional: add an email to the contact section; swap `assets/og.png` for a still from your best animation
+- [ ] Optional: add an email to the contact section; swap `assets/og.jpg` for a still from your best animation
 - [ ] Read all headings and descriptions once. Much of the wording is a first draft, so make it sound like you.
 
 To try the site on your own computer, open a terminal in this folder and run `python3 -m http.server`,
@@ -39,14 +38,20 @@ js/work.js        builds the video grid + player
 js/reviews-data.js YOUR FIVERR REVIEWS (currently sample text)
 js/reviews.js     builds the three sliding review rows
 (add-ons section is plain HTML in index.html, search for id="addons")
-assets/           favicon, apple-touch-icon.png, og.png (the picture shown when the link is shared)
+assets/           logo.png (your S3D logo, orange, transparent), favicon-32/192.png, apple-touch-icon.png,
+                  mat-baker-preview.webp, lipi-preview.webp, lipi-icon.png,
+                  og.jpg (the picture shown when the link is shared)
 404.html          shown for pages that do not exist (it links back to "/")
 robots.txt        lets search engines in
 ```
 
 ## Adding your product animations
 
-Open `js/videos.js` and paste each YouTube link between the quotes after `url:`
+`js/videos.js` currently holds your one animation. To add more, copy its line onto a new line below it and paste the next
+YouTube link. With one video the section is a single big player; with several, the first is shown large and the rest
+form a grid. The "Watch more on YouTube" button in `index.html` links to your channel.
+
+To change a link, open `js/videos.js` and paste each YouTube link between the quotes after `url:`
 (watch links, `youtu.be` links, Shorts links, or the bare video ID all work).
 The first entry is shown large as the featured piece. Entries left empty show a "Coming soon" tile.
 Thumbnails come from YouTube automatically; to use your own cover image, add `thumb: "assets/thumbs/01.jpg"`.
@@ -61,17 +66,27 @@ You can also fill in `summary` (for example rating `"5.0"`, count `"130"`) to sh
 ## Editing the Blender add-ons section
 
 It is plain HTML in `index.html` (search for `id="addons"`). Comments marked `EDIT:` show what to change:
-the download count (the number appears in `data-count` and in the text), the one-line description under LIPI,
-and the Drive-rig card when you are ready to announce it.
+the download count (the number appears in `data-count` and in the text) and the Drive-rig card when you are
+ready to announce it. The pictures are `assets/mat-baker-preview.webp` and `assets/lipi-preview.webp`; replace
+a file (same name) to change the picture. The "Featured on" chips link to the articles; add or remove a chip
+by copying or deleting one `<a class="outlet ...">` line.
+
+## Editing the team section
+
+It is plain HTML in `index.html` (search for `id="team"`). Each role is one `<li class="role">` block: change the
+title and the one-line text, copy a block to add a role, or delete one. No names or numbers are shown; if you
+want to add team members later, tell me and I will add photos and names.
 
 ## Contact, footer and sharing
 
-- Contact and footer are plain HTML at the bottom of `index.html` (search for `id="contact"`). There is a
+- Contact and footer are plain HTML at the bottom of `index.html` (search for `id="contact"`). The WhatsApp button
+  (`https://wa.me/message/BRLC23NIBSHRM1`) appears in the nav, hero, services, contact and footer; Instagram,
+  Facebook, TikTok and YouTube links are in the contact section and the footer. There is a
   commented-out email line there: add your address and remove the comment marks if you want one shown.
 - **Site address:** the `<head>` assumes `https://sanjaya3d.github.io/` (a repo named `sanjaya3d.github.io`).
   If your address is different, search `index.html` for `sanjaya3d.github.io` and change all 5 places
   (canonical, og:url, og:image, twitter:image, and `url` in the JSON-LD block).
-- `assets/og.png` is the 1200x630 picture shown when the link is shared. Replace it with a still from your best
+- `assets/og.jpg` is the 1200x630 picture shown when the link is shared. Replace it with a still from your best
   animation any time (same file name, same size).
 
 ## The 3D hero

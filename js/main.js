@@ -12,7 +12,7 @@
   const navLinks = $("#nav-links");
   const toggle = $(".nav__toggle");
 
-  const sections = ["work", "services", "reviews", "addons", "contact"]
+  const sections = ["work", "services", "team", "reviews", "addons", "contact"]
     .map((id) => ({ id, el: document.getElementById(id), link: $(`.nav__links a[href="#${id}"]`) }))
     .filter((s) => s.el && s.link);
 
@@ -60,7 +60,7 @@
     nav.addEventListener("focusout", (e) => {
       if (isOpen() && e.relatedTarget && !nav.contains(e.relatedTarget)) setOpen(false);
     });
-    window.matchMedia("(max-width: 960px)").addEventListener("change", () => setOpen(false));
+    window.matchMedia("(max-width: 1040px)").addEventListener("change", () => setOpen(false));
   }
 
   /* ---------- Footer year ---------- */

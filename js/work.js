@@ -100,10 +100,10 @@
     }
 
     const meta = el("span", "tile__meta");
-    meta.appendChild(el("span", "tile__num", pad(item.n)));
+    if (raw.length > 1) meta.appendChild(el("span", "tile__num", pad(item.n)));   // numbering only makes sense for several pieces
     meta.appendChild(el("span", "tile__title", item.title));
     tile.appendChild(meta);
-    if (item.index === 0) tile.appendChild(el("span", "tile__badge", "Featured"));
+    if (item.index === 0 && raw.length > 1) tile.appendChild(el("span", "tile__badge", "Featured"));
     return tile;
   }
 
@@ -114,7 +114,7 @@
   if ((items.length - 1) % 2 === 1 && tiles.length > 1) tiles[tiles.length - 1].classList.add("tile--wide");
 
   const count = document.getElementById("work-count");
-  if (count) count.textContent = items.length + " pieces";
+  if (count) count.textContent = items.length > 1 ? items.length + " pieces" : "";
 
   (window.revealOnScroll || ((list) => list.forEach((t) => t.classList.add("is-in"))))(tiles);
 
@@ -142,7 +142,7 @@
     iframe.referrerPolicy = "strict-origin-when-cross-origin";
     frame.appendChild(iframe);
     titleEl.textContent = item.title;
-    countEl.textContent = pad(item.n) + " / " + pad(items.length);
+    countEl.textContent = items.length > 1 ? pad(item.n) + " / " + pad(items.length) : "";
     watchEl.href = watchUrl(item);
   }
 
