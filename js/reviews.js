@@ -1,5 +1,5 @@
 /* SANJAYA 3D — portfolio
-   Part 5: Fiverr reviews as three sliding rows.
+   Part 5 + 16: Fiverr reviews as three sliding rows, with a "Repeat client" badge.
    Reads window.PORTFOLIO_REVIEWS (js/reviews-data.js). Rows alternate direction and
    speed; hovering a row pauses it; a Pause button stops everything. With
    prefers-reduced-motion the rows don't move and can be scrolled by hand instead. */
@@ -41,25 +41,46 @@
     return (a + b).toUpperCase();
   }
 
-  function buildCard(r) {
+  /* A name that appears in more than one review marks a repeat client (matched ignoring capitals).
+     Add repeat: true / repeat: false to a review in the data file to force it. */
+  const nameKey = (r) => String(r.name || "").trim().toLowerCase();
+  const nameCount = new Map();
+  items.forEach((r) => { const k = nameKey(r); if (k) nameCount.set(k, (nameCount.get(k) || 0) + 1); });
+  const isRepeat = (r) => r.repeat === true || (r.repeat !== false && (nameCount.get(nameKey(r)) || 0) > 1);
+
+  function buildCard(r, repeat) {
     // A missing or invalid rating shows no stars (never a made-up 5); anything above 5 counts as 5.
+    // Decimals such as 4.7 are kept: the last star fills partly and the label gives the exact number.
     const n = Number(r.rating);
-    const rating = Number.isFinite(n) && n >= 1 ? Math.min(5, Math.round(n)) : 0;
+    const rating = Number.isFinite(n) && n >= 1 ? Math.min(5, Math.round(n * 10) / 10) : 0;
     const card = el("li", "review");
 
-    if (rating) {
-      const stars = el("div", "review__stars");
-      stars.setAttribute("role", "img");
-      stars.setAttribute("aria-label", rating + " out of 5 stars");
-      for (let i = 0; i < 5; i++) {
-        const s = el("span", i < rating ? "" : "is-off");
-        s.innerHTML = STAR;
-        stars.appendChild(s);
+    if (rating || repeat) {
+      const top = el("div", "review__top");
+      if (rating) {
+        const stars = el("div", "review__stars");
+        stars.setAttribute("role", "img");
+        stars.setAttribute("aria-label", rating + " out of 5 stars");
+        for (let i = 0; i < 5; i++) {
+          const fill = Math.max(0, Math.min(1, rating - i));
+          const s = el("span", fill > 0 ? "" : "is-off");
+          s.innerHTML = STAR;
+          if (fill > 0 && fill < 1) {
+            s.classList.add("is-part");
+            s.style.setProperty("--fill", Math.round(fill * 100) + "%");
+            s.insertAdjacentHTML("beforeend", STAR);      // second star on top, clipped to the filled part
+          }
+          stars.appendChild(s);
+        }
+        top.appendChild(stars);
       }
-      card.appendChild(stars);
+      if (repeat) top.appendChild(el("span", "review__badge", "Repeat client"));
+      card.appendChild(top);
     }
 
-    card.appendChild(el("p", "review__text", r.text));
+    const text = el("p", "review__text", r.text);
+    if (r.lang) text.lang = String(r.lang);               // e.g. a review written in Italian
+    card.appendChild(text);
 
     const who = el("div", "review__who");
     const avatar = el("span", "review__avatar", initials(r.name));
@@ -83,7 +104,7 @@
     const track = el("div", "reviews__track");
     const group = el("ul", "reviews__group");
     group.setAttribute("aria-label", "Client reviews, row " + (i + 1));
-    items.forEach((r, idx) => { if (idx % rowCount === i) group.appendChild(buildCard(r)); });
+    items.forEach((r, idx) => { if (idx % rowCount === i) group.appendChild(buildCard(r, isRepeat(r))); });
     track.appendChild(group);
     row.appendChild(track);
     rowsEl.appendChild(row);

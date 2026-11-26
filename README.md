@@ -16,8 +16,7 @@ Static site, no build step. Plain HTML, CSS and JavaScript, so it runs on GitHub
 ## Before you go live (checklist)
 
 - [ ] `js/videos.js`: when a new animation is ready, paste its link on the next "Coming soon" line (1 of 10 is in already)
-- [ ] `js/reviews-data.js`: replace the sample reviews with real ones and remove every `demo: true`
-      (the "Sample reviews" tag then disappears by itself)
+- [x] `js/reviews-data.js`: your 84 real Fiverr reviews are in (the "Sample reviews" tag is gone)
 - [ ] `index.html`, Mat-Baker card: update the download number now and then (two places, see the `EDIT:` note)
 - [ ] Site address: if your repo is not `sanjaya3d.github.io`, change the address in the `<head>` (see below)
 - [ ] Optional: add an email to the contact section; swap `assets/og.jpg` for a still from your best animation
@@ -35,7 +34,7 @@ js/main.js        nav, hero light, stat counters, tools ticker
 js/hero3d.js      the interactive 3D cube in the hero
 js/videos.js      YOUR VIDEO LIST: paste YouTube links here
 js/work.js        builds the video grid + player
-js/reviews-data.js YOUR FIVERR REVIEWS (currently sample text)
+js/reviews-data.js YOUR FIVERR REVIEWS (84 real ones)
 js/reviews.js     builds the three sliding review rows
 (add-ons section is plain HTML in index.html, search for id="addons")
 assets/           logo.png (your S3D logo, orange, transparent), favicon-32/192.png, apple-touch-icon.png,
@@ -60,10 +59,16 @@ Thumbnails come from YouTube automatically; to use your own cover image, add `th
 
 ## Adding your Fiverr reviews
 
-`js/reviews-data.js` currently holds SAMPLE reviews. Replace each entry with a real review from your
-Fiverr profile (name, review text, rating) and remove `demo: true` from it. While any entry still has
-`demo: true`, the page shows a small "Sample reviews" tag. It disappears once all reviews are real.
-You can also fill in `summary` (for example rating `"5.0"`, count `"130"`) to show headline numbers.
+`js/reviews-data.js` holds your 84 real Fiverr reviews, word for word, newest first. To add a new one, copy any
+entry to the top of the list and change `name`, `rating` and `text`. Remove one by deleting its entry.
+- **Repeat clients:** nothing to do. When the same name appears in more than one review, each of that name's
+  reviews gets a "Repeat client" badge by itself (9 clients today, 51 reviews). To force it on or off for one
+  review, add `repeat: true` or `repeat: false`.
+- **No dates:** the page never shows how long ago a review was written, so none are stored.
+- Ratings below 5 show as they are (4.7 fills 4.7 stars). A review in another language can have `lang: "it"`.
+- You can fill in `summary` (for example rating `"5.0"`, count `"130"`) to show headline numbers; copy them from your
+  Fiverr profile, because the list here may not be every review you have.
+- If you ever add sample text again, give it `demo: true` and the "Sample reviews" tag returns.
 
 ## Editing the Blender add-ons section
 
