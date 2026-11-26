@@ -114,7 +114,11 @@
   if ((items.length - 1) % 2 === 1 && tiles.length > 1) tiles[tiles.length - 1].classList.add("tile--wide");
 
   const count = document.getElementById("work-count");
-  if (count) count.textContent = items.length > 1 ? items.length + " pieces" : "";
+  if (count) {
+    // Honest count: say how many can be watched now, and how many are reserved
+    const soon = items.length - playable.length;
+    count.textContent = items.length < 2 ? "" : soon ? playable.length + " live \u00b7 " + soon + " coming soon" : items.length + " pieces";
+  }
 
   (window.revealOnScroll || ((list) => list.forEach((t) => t.classList.add("is-in"))))(tiles);
 
@@ -142,7 +146,8 @@
     iframe.referrerPolicy = "strict-origin-when-cross-origin";
     frame.appendChild(iframe);
     titleEl.textContent = item.title;
-    countEl.textContent = items.length > 1 ? pad(item.n) + " / " + pad(items.length) : "";
+    // counts only the videos that can be played, so "01 / 10" never appears when 9 of them are still coming soon
+    countEl.textContent = playable.length > 1 ? pad(playable.indexOf(item) + 1) + " / " + pad(playable.length) : "";
     watchEl.href = watchUrl(item);
   }
 

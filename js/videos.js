@@ -11,10 +11,20 @@
        title: "Name shown on the tile"
        thumb: "assets/thumbs/01.jpg"   (your own cover image; otherwise YouTube's thumbnail is used)
 
-   The FIRST entry is shown large as the featured piece. With one video, the section is just that one big player.
-   Entries with an empty url show a "Coming soon" tile, so you can reserve a spot and fill it in later.
+   The FIRST entry is shown large as the featured piece. The rest sit in a grid of three.
+   Entries with an empty url show a "Coming soon" tile, so you can reserve a spot and fill it in later:
+   when a new animation is ready, paste its link after `url:` on the next "Coming soon" line (and change its title).
+   The tile count and the "N live" label update by themselves.
    --------------------------------------------------------------- */
 window.PORTFOLIO_VIDEOS = [
   { title: "Product animation", url: "https://youtu.be/HyiGxdHSs0w" },
-  // To add more, copy the line above onto a new line, give it a title and paste the next YouTube link.
+  { title: "Product animation", url: "" },   // 02: coming soon
+  { title: "Product animation", url: "" },   // 03: coming soon
+  { title: "Product animation", url: "" },   // 04: coming soon
+  { title: "Product animation", url: "" },   // 05: coming soon
+  { title: "Product animation", url: "" },   // 06: coming soon
+  { title: "Product animation", url: "" },   // 07: coming soon
+  { title: "Product animation", url: "" },   // 08: coming soon
+  { title: "Product animation", url: "" },   // 09: coming soon
+  { title: "Product animation", url: "" },   // 10: coming soon
 ];

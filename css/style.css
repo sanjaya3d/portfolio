@@ -719,6 +719,9 @@ img, svg, video { display: block; max-width: 100%; }
 
 .tile--empty { cursor: default; }
 .tile--empty .tile__title { color: var(--ink-dim); }
+/* a reserved spot: dashed ring (same idea as the dashed "Coming soon" add-on card), and no hover cue because it cannot be clicked */
+.tile--empty::before { border-style: dashed; }
+.tile--empty:hover::before { border-color: var(--line); }
 
 @media (max-width: 960px) {
   .work__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }

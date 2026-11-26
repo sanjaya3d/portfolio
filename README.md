@@ -15,7 +15,7 @@ Static site, no build step. Plain HTML, CSS and JavaScript, so it runs on GitHub
 
 ## Before you go live (checklist)
 
-- [ ] `js/videos.js`: add more animations when you have them (one is in already)
+- [ ] `js/videos.js`: when a new animation is ready, paste its link on the next "Coming soon" line (1 of 10 is in already)
 - [ ] `js/reviews-data.js`: replace the sample reviews with real ones and remove every `demo: true`
       (the "Sample reviews" tag then disappears by itself)
 - [ ] `index.html`, Mat-Baker card: update the download number now and then (two places, see the `EDIT:` note)
@@ -47,9 +47,11 @@ robots.txt        lets search engines in
 
 ## Adding your product animations
 
-`js/videos.js` currently holds your one animation. To add more, copy its line onto a new line below it and paste the next
-YouTube link. With one video the section is a single big player; with several, the first is shown large and the rest
-form a grid. The "Watch more on YouTube" button in `index.html` links to your channel.
+`js/videos.js` holds 10 lines: your first animation (shown large) and 9 reserved lines that show as "Coming soon" tiles.
+When the next animation is ready, open `js/videos.js`, find the next line with `url: ""`, paste the YouTube link between
+the quotes and change the title. The tile becomes playable and the label above the grid ("1 live · 9 coming soon")
+updates itself. Need more than 10? Copy any line and add it at the end. The "Watch more on YouTube" button in
+`index.html` links to your channel.
 
 To change a link, open `js/videos.js` and paste each YouTube link between the quotes after `url:`
 (watch links, `youtu.be` links, Shorts links, or the bare video ID all work).
